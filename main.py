@@ -9,11 +9,6 @@ if __name__ == "__main__":
     parser.add_argument('-p', '--proxyPort', type=str, default='7897', help='代理端口')
     parser.add_argument('-r', '--repoPath', type=str, default='./yolov5', help='仓库路径')
     parser.add_argument('-g', '--repoName', type=str, default='ultralytics/yolov5', help='GitHub 仓库名')
-<<<<<<< HEAD
-=======
-    #此处请替换为自己的token,或者通过启动参数配置
-    parser.add_argument('-t', '--token', type=str, default='', help='GitHub Token')
->>>>>>> d3697bb (Initial commit)
     parser.add_argument('-d', '--dir', type=str, default='./data', help='数据目录')
     args = parser.parse_args()
     #请在config.json文件中配置你的token
