@@ -1,5 +1,6 @@
 import argparse
 import os
+import shutil
 import json
 from data_puller import DataPuller
 from data_analyzer import DataAnalyzer
@@ -11,6 +12,7 @@ if __name__ == "__main__":
     parser.add_argument('-g', '--repoName', type=str, default='ultralytics/yolov5', help='GitHub 仓库名')
     parser.add_argument('-d', '--dir', type=str, default='./data', help='数据目录')
     args = parser.parse_args()
+
     #请在config.json文件中配置你的token
     with open('./githubToken.json', 'r', encoding='utf-8') as f:
         config_data = json.load(f)
@@ -30,3 +32,5 @@ if __name__ == "__main__":
     analyzer = DataAnalyzer()
     commits, issues, prs = DataPuller.pull_data(config)
     analyzer.analyze_data(config, commits)
+
+    
