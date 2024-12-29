@@ -10,8 +10,26 @@ class DataAnalyzer:
     def analyze_code_structure(self, file_path):
         """
         分析指定Python文件中的函数和类数量。
+        
+        输入：file_path (str): 要分析的Python文件路径
+        输出：dict: 包含'functions'和'classes'键的字典，分别表示函数和类的数量
         """
-        return
+        with open(file_path, "r", encoding="utf-8") as f:
+            tree = cst.parse_module(f.read())
+        self.function_count = 0
+        self.class_count = 0
+
+        def visit_FunctionDef(node: cst.FunctionDef):
+            self.function_count += 1
+
+        def visit_ClassDef(node: cst.ClassDef):
+            self.class_count += 1
+
+        tree.visit(cst.CSTVisitor())
+        return {
+            "functions": self.function_count,
+            "classes": self.class_count
+        }
 
     @staticmethod
     def generate_fuzz_inputs():
