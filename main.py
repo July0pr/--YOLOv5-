@@ -1,6 +1,5 @@
 import argparse
 import os
-import shutil
 import json
 from data_puller import DataPuller
 from data_analyzer import DataAnalyzer
@@ -16,11 +15,15 @@ if __name__ == "__main__":
     #请在config.json文件中配置你的token
     with open('./githubToken.json', 'r', encoding='utf-8') as f:
         config_data = json.load(f)
+        if not config_data['token']:
+            print('请在config.json文件中配置你的token')
+            exit(1)
+
     config = {
         'proxyPort': args.proxyPort,
         'proxies': {
             'http': f'http://localhost:{args.proxyPort}',
-            'https': f'https://localhost:{args.proxyPort}',
+            'https': f'http://localhost:{args.proxyPort}',
         },
         'repoPath': args.repoPath,
         'githubRepo': args.repoName,

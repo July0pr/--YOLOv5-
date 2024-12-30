@@ -1,3 +1,5 @@
+import libcst as cst
+
 class DataAnalyzer:
     """
     该类用于代码分析、模糊测试数据生成以及提交历史的可视化。

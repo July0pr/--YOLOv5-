@@ -57,7 +57,7 @@ class DataPuller:
         results = []
         page = 1
         while True:
-            response = requests.get(url, headers=headers, params={"page": page, "per_page": 100}, proxies=proxies)
+            response = requests.get(url, headers=headers, params={"page": page, "per_page": 100}, proxies=proxies, verify=False)
             if response.status_code != 200:
                 print(f"获取数据失败，状态码: {response.status_code}")
                 break
@@ -77,7 +77,7 @@ class DataPuller:
         输入：config (dict): 包含仓库路径、GitHub 仓库名、令牌和代理设置的配置字典
         输出：commits (list), issues (list), prs (list): 返回提交历史、issues 和 PR 数据
         """
-        print("开始分析提交历史...")
+        print("开始拉取提交历史...")
         commits = DataPuller.analyze_commit_history(config['repoPath'])
 
         print("正在获取 GitHub Issue 和 PR 数据...")
