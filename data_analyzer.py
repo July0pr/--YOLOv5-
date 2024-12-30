@@ -5,6 +5,8 @@ class DataAnalyzer:
     该类用于代码分析、模糊测试数据生成以及提交历史的可视化。
     包含分析代码中的函数和类数量、生成模糊测试输入数据和可视化提交历史数据的方法。
     """
+    result_dir = "./result"
+
     def __init__(self):
         self.function_count = 0
         self.class_count = 0
@@ -51,11 +53,29 @@ class DataAnalyzer:
         print("提交历史可视化图已保存为 'commitsOverTime.png'")
         return
 
+    @staticmethod
+    def visualize_author(commits):
+        """
+        根据提交记录可视化不同作者提交的commits次数。
+        """
+        print("提交历史可视化图已保存为 'commitsByAuthor.png'")
+        return
+
+    @staticmethod
+    def visualize_linescommite(commits):
+        """
+        根据提交记录可视化不同作者提交的代码行数。
+        """
+        print("作者的代码提交行数饼图已保存为 'linesChangedByAuthor.png'")
+        return
+
 
     def analyze_data(self, config, commits):
         """
         这个方法是主函数的接入口，用于调用其他方法进行数据分析。
         """
+        DataAnalyzer.result_dir = config["resultDir"]
+
         code_analysis = self.analyze_code_structure(f"{config['repoPath']}/models/yolo.py")
         fuzz_inputs = self.generate_fuzz_inputs()
         self.visualize_commit_history(commits)

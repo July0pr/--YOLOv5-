@@ -8,6 +8,8 @@ class DataPuller:
     该类用于处理数据保存、分析提交历史、从 GitHub 获取数据等任务。
     包含保存 CSV 文件、分析 Git 提交历史、获取 GitHub 数据的方法。
     """
+    data_dir = "./data"
+
     @staticmethod
     def save_to_csv(data, filename):
         """
@@ -16,7 +18,7 @@ class DataPuller:
         输入：data (list/dict): 要保存的数据
               filename (str): 保存文件的名称
         """
-        file_path = os.path.join("./data", filename)
+        file_path = os.path.join(DataPuller.data_dir, filename)
         pd.DataFrame(data).to_csv(file_path, index=False)
         print(f"数据已保存到: {file_path}")
 
@@ -57,7 +59,7 @@ class DataPuller:
         results = []
         page = 1
         while True:
-            response = requests.get(url, headers=headers, params={"page": page, "per_page": 100}, proxies=proxies, verify=False)
+            response = requests.get(url, headers=headers, params={"page": page, "per_page": 100}, proxies=proxies)
             if response.status_code != 200:
                 print(f"获取数据失败，状态码: {response.status_code}")
                 break
@@ -77,6 +79,7 @@ class DataPuller:
         输入：config (dict): 包含仓库路径、GitHub 仓库名、令牌和代理设置的配置字典
         输出：commits (list), issues (list), prs (list): 返回提交历史、issues 和 PR 数据
         """
+        DataPuller.data_dir = config['dataDir']
         if update:
             print ("开始从 Git 仓库拉取提交历史...")
             print("开始拉取提交历史...")
