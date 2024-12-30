@@ -10,6 +10,7 @@ if __name__ == "__main__":
     parser.add_argument('-r', '--repoPath', type=str, default='./yolov5', help='仓库路径')
     parser.add_argument('-g', '--repoName', type=str, default='ultralytics/yolov5', help='GitHub 仓库名')
     parser.add_argument('-d', '--dir', type=str, default='./data', help='数据目录')
+    parser.add_argument('-u', '--update', action='store_true', help='是否更新数据')
     args = parser.parse_args()
 
     #请在config.json文件中配置你的token
@@ -33,7 +34,7 @@ if __name__ == "__main__":
     os.makedirs(args.dir, exist_ok=True)
 
     analyzer = DataAnalyzer()
-    commits, issues, prs = DataPuller.pull_data(config)
+    commits, issues, prs = DataPuller.pull_data(config, args.update)
     analyzer.analyze_data(config, commits)
 
     

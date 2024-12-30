@@ -70,18 +70,31 @@ class DataPuller:
         return results
 
     @staticmethod
-    def pull_data(config):
+    def pull_data(config, update):
         """
         从 Git 仓库和 GitHub 拉取数据，分别获取提交历史、issues 和 PR 数据。
         
         输入：config (dict): 包含仓库路径、GitHub 仓库名、令牌和代理设置的配置字典
         输出：commits (list), issues (list), prs (list): 返回提交历史、issues 和 PR 数据
         """
-        print("开始拉取提交历史...")
-        commits = DataPuller.analyze_commit_history(config['repoPath'])
+        if update:
+            print ("开始从 Git 仓库拉取提交历史...")
+            print("开始拉取提交历史...")
+            commits = DataPuller.analyze_commit_history(config['repoPath'])
 
-        print("正在获取 GitHub Issue 和 PR 数据...")
-        issues = DataPuller.fetch_github_data(config['githubRepo'], config['githubToken'], "issues", config['proxies'])
-        prs = DataPuller.fetch_github_data(config['githubRepo'], config['githubToken'], "pulls", config['proxies'])
+            print("正在获取 GitHub Issue 和 PR 数据...")
+            issues = DataPuller.fetch_github_data(config['githubRepo'], config['githubToken'], "issues", config['proxies'])
+            prs = DataPuller.fetch_github_data(config['githubRepo'], config['githubToken'], "pulls", config['proxies'])
 
-        return commits, issues, prs
+            return commits, issues, prs
+
+        else:
+            print("从本地加载提交历史、issues 和 PR 数据...")
+            if not os.path.exists(f"{config['dataDir']}/commitHistory.csv"):
+                print("本地数据文件不存在，请设置 update=True 以更新数据。")
+                return [], [], []
+            commits = pd.read_csv(f"{config['dataDir']}/commitHistory.csv").to_dict(orient="records")
+            issues = pd.read_csv(f"{config['dataDir']}/issues.csv").to_dict(orient="records")
+            prs = pd.read_csv(f"{config['dataDir']}/pulls.csv").to_dict(orient="records")
+
+            return commits, issues, prs
