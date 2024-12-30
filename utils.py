@@ -8,7 +8,7 @@ def reqTest(proxyPort='7897'):
     '''
     proxies = {
         'http': f'http://localhost:{proxyPort}',
-        'https': f'https://localhost:{proxyPort}',
+        'https': f'http://localhost:{proxyPort}',
     }
     try:
         response = requests.get('https://api.github.com', proxies=proxies, verify=False)
