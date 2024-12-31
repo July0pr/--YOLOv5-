@@ -2,8 +2,7 @@ import argparse
 import os
 import json
 from data_puller import DataPuller
-from commits_analyzer import CommitsAnalyzer
-from issues_analyzer import IssuesAnalyzer
+from analyzer import *
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='YOLOv5 仓库分析配置')
@@ -36,6 +35,9 @@ if __name__ == "__main__":
     }
     os.makedirs(args.dataDir, exist_ok=True)
     os.makedirs(args.resultDir, exist_ok=True)
+
+    StaticAnalyser.run_staic_analysis(config['repoPath'], config['resultDir'])
+    #DynamicAnalyser.run_dynamic_analysis(config['repoPath'], config['resultDir'])
 
     commitsAnalyzer = CommitsAnalyzer()
     issuesAnalyzer = IssuesAnalyzer()

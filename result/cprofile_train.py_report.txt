@@ -1,0 +1,28 @@
+         77 function calls in 635.018 seconds
+
+   Ordered by: cumulative time
+   List reduced from 43 to 20 due to restriction <20>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000  635.018  635.018 C:\Users\July\anaconda3\envs\yolov52\lib\subprocess.py:464(run)
+        1    0.000    0.000  635.012  635.012 C:\Users\July\anaconda3\envs\yolov52\lib\subprocess.py:1090(communicate)
+        2    0.000    0.000  635.012  317.506 C:\Users\July\anaconda3\envs\yolov52\lib\subprocess.py:1184(wait)
+        2    0.000    0.000  635.012  317.506 C:\Users\July\anaconda3\envs\yolov52\lib\subprocess.py:1478(_wait)
+        1  635.012  635.012  635.012  635.012 {built-in method _winapi.WaitForSingleObject}
+        1    0.000    0.000    0.006    0.006 C:\Users\July\anaconda3\envs\yolov52\lib\subprocess.py:756(__init__)
+        1    0.000    0.000    0.006    0.006 C:\Users\July\anaconda3\envs\yolov52\lib\subprocess.py:1334(_execute_child)
+        1    0.006    0.006    0.006    0.006 {built-in method _winapi.CreateProcess}
+        2    0.000    0.000    0.000    0.000 {built-in method _winapi.CloseHandle}
+        1    0.000    0.000    0.000    0.000 C:\Users\July\anaconda3\envs\yolov52\lib\subprocess.py:200(Close)
+        1    0.000    0.000    0.000    0.000 C:\Users\July\anaconda3\envs\yolov52\lib\subprocess.py:1207(_close_pipe_fds)
+        1    0.000    0.000    0.000    0.000 C:\Users\July\anaconda3\envs\yolov52\lib\subprocess.py:533(list2cmdline)
+        6    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+        1    0.000    0.000    0.000    0.000 C:\Users\July\anaconda3\envs\yolov52\lib\abc.py:117(__instancecheck__)
+        1    0.000    0.000    0.000    0.000 {built-in method _abc._abc_instancecheck}
+        1    0.000    0.000    0.000    0.000 C:\Users\July\anaconda3\envs\yolov52\lib\abc.py:121(__subclasscheck__)
+        1    0.000    0.000    0.000    0.000 {built-in method _abc._abc_subclasscheck}
+        1    0.000    0.000    0.000    0.000 C:\Users\July\anaconda3\envs\yolov52\lib\contextlib.py:489(__exit__)
+        1    0.000    0.000    0.000    0.000 {built-in method _winapi.GetExitCodeProcess}
+        1    0.000    0.000    0.000    0.000 C:\Users\July\anaconda3\envs\yolov52\lib\subprocess.py:1017(__exit__)
+
+

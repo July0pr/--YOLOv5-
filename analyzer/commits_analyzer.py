@@ -41,21 +41,6 @@ class CommitsAnalyzer:
             "classes": self.class_count
         }
 
-    @staticmethod
-    def generate_fuzz_inputs():
-        """
-        生成模糊测试输入数据并保存为CSV文件。
-        
-        输出：inputs (list): 包含测试输入字典的列表
-        """
-        inputs = [
-            {"imageSize": (0, 0), "description": "空白图片"},
-            {"imageSize": (10000, 10000), "description": "超大图片"},
-            {"labels": ["非数字"], "description": "无效标签"},
-        ]
-        pd.DataFrame(inputs).to_csv(f"{CommitsAnalyzer.result_dir}/fuzzInputs.csv", index=False)
-        print("模糊测试数据已保存到: fuzzInputs.csv")
-        return inputs
 
     @staticmethod
     def visualize_commit_history(commits):
@@ -110,9 +95,6 @@ class CommitsAnalyzer:
         print("开始分析代码结构...")
         code_analysis = self.analyze_code_structure(f"{config['repoPath']}/models/yolo.py")
         print("代码分析结果:", code_analysis)
-
-        print("生成模糊测试输入数据...")
-        fuzz_inputs = self.generate_fuzz_inputs()
 
         print("正在可视化提交历史...")
         self.visualize_commit_history(commits)
