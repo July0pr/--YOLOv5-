@@ -1,0 +1,20 @@
+打开的问题数量: 206
+已关闭的问题数量: 0
+已关闭问题的平均生命周期（天数）: nan
+
+最常见的标签:
+
+打开的PR数量: 23
+已关闭的PR数量: 0
+已合并PR的平均生命周期（天数）: nan
+
+关键词统计（name字段）：
+question: 118
+bug: 35
+enhancement: 34
+detect: 27
+documentation: 22
+TODO: 14
+Stale: 13
+dependencies: 5
+help wanted: 2
